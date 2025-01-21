@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tiktok_clone/constants/gaps.dart';
-import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/features/authentication/widgets/form_botton.dart';
+import 'package:hw_tiktok_clone/constants/gaps.dart';
+import 'package:hw_tiktok_clone/constants/sizes.dart';
+import 'package:hw_tiktok_clone/features/authentication/widgets/form_botton.dart';
 
 class LoginFormScreen extends StatefulWidget {
   const LoginFormScreen({super.key});

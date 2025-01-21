@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/constants/gaps.dart';
-import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/features/authentication/birthdat_screen.dart';
-import 'package:tiktok_clone/features/authentication/widgets/form_botton.dart';
+import 'package:hw_tiktok_clone/constants/gaps.dart';
+import 'package:hw_tiktok_clone/constants/sizes.dart';
+import 'package:hw_tiktok_clone/features/authentication/birthdat_screen.dart';
+import 'package:hw_tiktok_clone/features/authentication/widgets/form_botton.dart';
 
 class PasswordScreen extends StatefulWidget {
   const PasswordScreen({super.key});
