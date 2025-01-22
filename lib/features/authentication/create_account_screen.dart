@@ -144,7 +144,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                              Gaps.v10,
+                  Gaps.v10,
                   Stack(
                     children: [
                       GestureDetector(

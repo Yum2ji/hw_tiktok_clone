@@ -31,39 +31,38 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Gaps.v10,
-                                  Stack(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Gaps.v10,
-                            Text(
-                              'Cancel',
-                              style: TextStyle(
-                                fontSize: Sizes.size20,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                Stack(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          FaIcon(
-                            FontAwesomeIcons.twitter,
-                            color: Theme.of(context).primaryColor,
-                            size: Sizes.size40,
+                          Gaps.v10,
+                          Text(
+                            'Cancel',
+                            style: TextStyle(
+                              fontSize: Sizes.size20,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ],
                       ),
-                    ],
-                  ),
- 
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FaIcon(
+                          FontAwesomeIcons.twitter,
+                          color: Theme.of(context).primaryColor,
+                          size: Sizes.size40,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
                 Gaps.v80,
                 Gaps.v40,
                 const Text(
