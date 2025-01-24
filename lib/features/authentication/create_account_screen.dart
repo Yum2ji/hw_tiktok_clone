@@ -15,11 +15,9 @@ class CreateAccountScreen extends StatefulWidget {
 }
 
 class _CreateAccountScreenState extends State<CreateAccountScreen> {
-
-
   final TextEditingController _birthdayController = TextEditingController();
   final FocusNode _birthdayFocusNode = FocusNode();
-   final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _emailFocusNode = FocusNode();
   bool _showBottomAppBar = false;
   bool _isEmailFocus = false;
 
@@ -31,6 +29,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   bool _isEmailValid = false;
   bool _isUserNameValid = false;
   bool _isBirthdayValid = false;
+  bool _isEmailTap = true;
 
   void _onSubmitTap() {
     if (_formKey.currentState != null) {
@@ -42,6 +41,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         _formKey.currentState!.save();
       }
     }
+  }
+
+  void _onEmailTap() {
+    setState(() {
+      _isEmailTap = !_isEmailTap;
+    });
   }
 
   @override
@@ -101,8 +106,18 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     FocusScope.of(context).unfocus();
   }
 
-     bool _isFormValid() {
+  bool _isFormValid() {
     return _isEmailValid && _isUserNameValid && _isBirthdayValid;
+  }
+
+  void _checkEmailPhone(value) {
+    final reExp = _isEmailTap
+        ? RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        : RegExp(r"^(?:\d{2,3}-\d{3,4}-\d{4}|\d{10,11})$");
+    setState(() {
+      _isEmailValid = reExp.hasMatch(value);
+    });
   }
 
   @override
@@ -178,7 +193,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                           fontSize: Sizes.size20,
                           fontWeight: FontWeight.w400,
                         ),
-                        
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
                             color: Colors.grey.shade300,
@@ -199,17 +213,15 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       },
                       validator: (_) => null,
                       onSaved: (newValue) {
-                       
                         if (newValue != null) {
                           formData['username'] = newValue;
                         }
                       },
-                      cursorColor : Theme.of(context).primaryColor,
+                      cursorColor: Theme.of(context).primaryColor,
                     ),
                     Gaps.v28,
                     TextFormField(
                       decoration: InputDecoration(
-                        
                         suffix: Icon(
                           Icons.check_circle_sharp,
                           size: Sizes.size28,
@@ -217,13 +229,14 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                               ? Colors.green
                               : Colors.grey.shade400,
                         ),
-                        labelText: _isEmailFocus?"Email":"Phone number or email address", 
+                        labelText: _isEmailFocus
+                            ? (_isEmailTap ? "Email" : "Phone number")
+                            : "Phone number or email address",
                         labelStyle: TextStyle(
                           color: Colors.grey.shade700,
                           fontSize: Sizes.size20,
                           fontWeight: FontWeight.w400,
                         ),
-                      
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
                             color: Colors.grey.shade300,
@@ -238,20 +251,14 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         ),
                       ),
                       focusNode: _emailFocusNode,
-                      onChanged: (value) {
-                        setState(() {
-                          final reExp = RegExp(
-                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-                          _isEmailValid = reExp.hasMatch(value);
-                        });
-                      },
+                      onChanged: _checkEmailPhone,
                       validator: (_) => null,
                       onSaved: (newValue) {
                         if (newValue != null) {
                           formData['email'] = newValue;
                         }
                       },
-                      cursorColor : Theme.of(context).primaryColor,
+                      cursorColor: Theme.of(context).primaryColor,
                     ),
                     Gaps.v28,
                     TextFormField(
@@ -264,13 +271,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                               ? Colors.green
                               : Colors.grey.shade400,
                         ),
-                        labelText: "Date of birth", 
+                        labelText: "Date of birth",
                         labelStyle: TextStyle(
                           color: Colors.grey.shade700,
                           fontSize: Sizes.size20,
                           fontWeight: FontWeight.w400,
                         ),
-                      
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
                             color: Colors.grey.shade300,
@@ -297,7 +303,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                           formData['birth'] = newValue;
                         }
                       },
-                      cursorColor : Theme.of(context).primaryColor,
+                      cursorColor: Theme.of(context).primaryColor,
                     ),
                     if (_showBottomAppBar)
                       Text(
@@ -456,21 +462,49 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         ],
                       ),
                     Gaps.v80,
-                    GestureDetector(
-                        onTap: (_isFormValid())
-                            ? (_isCheckCust ? _onSignUpTap : _onCustomizeTap)
-                            : null,
-                        child: FormButton(
-                          disabled: !_isFormValid(),
-                          title: _isCheckCust ? "Sign up" : "Next",
-                        )),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        if (_isEmailFocus)
+                          Flexible(
+                            flex: 3,
+                            child: TextButton(
+                              onPressed: _onEmailTap,
+                              child: Text(
+                                _isEmailTap
+                                    ? 'Use Phone instead'
+                                    : 'Use Email instead',
+                                style: TextStyle(
+                                  fontSize: Sizes.size20,
+                                  color: Colors.grey.shade700,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        Flexible(
+                          flex: 1,
+                          child: GestureDetector(
+                            onTap: (_isFormValid())
+                                ? (_isCheckCust
+                                    ? _onSignUpTap
+                                    : _onCustomizeTap)
+                                : null,
+                            child: FormButton(
+                              disabled: !_isFormValid(),
+                              title: _isCheckCust ? "Sign up" : "Next",
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
             ),
           ),
         ),
-        bottomNavigationBar: _showBottomAppBar 
+        bottomNavigationBar: _showBottomAppBar
             ? BottomAppBar(
                 padding: const EdgeInsets.symmetric(
                   horizontal: Sizes.size5,
