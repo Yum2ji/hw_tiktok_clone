@@ -5,7 +5,7 @@ import 'package:hw_tiktok_clone/constants/gaps.dart';
 import 'package:hw_tiktok_clone/constants/sizes.dart';
 import 'package:hw_tiktok_clone/features/authentication/customize_screen.dart';
 import 'package:hw_tiktok_clone/features/authentication/widgets/form_botton.dart';
-import 'package:hw_tiktok_clone/features/onboarding/interests_screen.dart';
+import 'package:hw_tiktok_clone/features/onboarding/validate_screen.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({super.key});
@@ -18,6 +18,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   final TextEditingController _birthdayController = TextEditingController();
   final FocusNode _birthdayFocusNode = FocusNode();
   final FocusNode _emailFocusNode = FocusNode();
+
   bool _showBottomAppBar = false;
   bool _isEmailFocus = false;
 
@@ -32,10 +33,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   bool _isEmailTap = true;
 
   void _onSubmitTap() {
-    if (_formKey.currentState != null) {
-      _formKey.currentState!.validate();
-    }
-
     if (_formKey.currentState != null) {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
@@ -95,9 +92,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   }
 
   void _onSignUpTap() {
+    _onSubmitTap;
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const InterestsScreen(),
+        builder: (context) => ValidateScreen(email: formData['email'] ?? ""),
       ),
     );
   }
@@ -129,7 +127,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: Sizes.size36,
+         horizontal: Sizes.size40,
               ),
               child: Form(
                 key: _formKey,

@@ -24,7 +24,7 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: Sizes.size40,
+         horizontal: Sizes.size40,
           ),
           child: SingleChildScrollView(
             child: Column(

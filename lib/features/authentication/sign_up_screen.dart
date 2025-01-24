@@ -28,15 +28,15 @@ class SignUpScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                            Gaps.v10,
+                Gaps.v10,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     FaIcon(
-                  FontAwesomeIcons.twitter,
-                  color: Theme.of(context).primaryColor,
-                  size: Sizes.size40,
-                ),
+                      FontAwesomeIcons.twitter,
+                      color: Theme.of(context).primaryColor,
+                      size: Sizes.size40,
+                    ),
                   ],
                 ),
                 Gaps.v80,
@@ -116,7 +116,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 Gaps.v8,
                 GestureDetector(
-                  onTap : () => _onCreateAccountTap(context),
+                  onTap: () => _onCreateAccountTap(context),
                   child: AuthButton(
                     icon: SizedBox(
                       height: 30,
@@ -184,38 +184,39 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-
               ],
             ),
           ),
         ),
       ),
-      bottomNavigationBar:  BottomAppBar(
+      bottomNavigationBar: BottomAppBar(
         color: Colors.white,
         elevation: 2,
-        child :     Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Sizes.size40,),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: Sizes.size40,
+          ),
           child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Have an acount alread?',
-                        style: TextStyle(
-                          fontSize: Sizes.size16 + Sizes.size2,
-                          color: Theme.of(context).secondaryHeaderColor,
-                        ),
-                      ),
-                      Gaps.h5,
-                      Text(
-                        'Log in',
-                        style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: Sizes.size16 + Sizes.size2,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ),
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                'Have an acount alread?',
+                style: TextStyle(
+                  fontSize: Sizes.size16 + Sizes.size2,
+                  color: Theme.of(context).secondaryHeaderColor,
+                ),
+              ),
+              Gaps.h5,
+              Text(
+                'Log in',
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontSize: Sizes.size16 + Sizes.size2,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
