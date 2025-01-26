@@ -42,7 +42,8 @@ const Map<String, List<String>> interests = {
     "Riding",
     "Surfing",
     "Dogs and Cats",
-    "Climbing",    "Camping",
+    "Climbing",
+    "Camping",
     "Tracking",
     "Surping",
     "Swimming",
@@ -57,14 +58,15 @@ const Map<String, List<String>> interests = {
     "Climbing",
     "Swimming",
     "Riding",
-    "Surfing",    "Camping",
+    "Surfing",
+    "Camping",
     "Tracking",
     "Surping",
     "Dogs and Cats",
     "Climbing",
     "Swimming",
     "Riding",
-        "Camping",
+    "Camping",
     "Tracking",
     "Surping",
   ],
@@ -578,24 +580,71 @@ class _InterestScreenState extends State<InterestScreen> {
                     ),
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
-                      child: SizedBox(
-                        height: 160,
-                        width: 1000,
-                        child: Wrap(
-                          spacing: 5,
-                          runSpacing: 7,
-                          clipBehavior: Clip.hardEdge,
-                          children: [
-                            for (var interest in interests[inCategory]!)
-                              InterestButton(
-                                interest: interest,
-                                onSelected: (isSelected) {
-                                  _updateSelectedInterestCategories(
-                                      interest, isSelected);
-                                },
-                              ),
-                          ],
-                        ),
+                      child: Column(
+                        children: [
+                          Wrap(
+                            spacing: 5,
+                            runSpacing: 7,
+                            clipBehavior: Clip.hardEdge,
+                            children: [
+                              for (int i = 0;
+                                  i < interests[inCategory]!.length;
+                                  i++) ...[
+                                if (i % 3 == 0)
+                                  InterestButton(
+                                    interest: interests[inCategory]![i],
+                                    onSelected: (isSelected) {
+                                      _updateSelectedInterestCategories(
+                                          interests[inCategory]![i],
+                                          isSelected);
+                                    },
+                                  ),
+                              ]
+                            ],
+                          ),
+                          Gaps.v5,
+                          Wrap(
+                            spacing: 5,
+                            runSpacing: 7,
+                            clipBehavior: Clip.hardEdge,
+                            children: [
+                              for (int i = 0;
+                                  i < interests[inCategory]!.length;
+                                  i++) ...[
+                                if (i % 3 == 1)
+                                  InterestButton(
+                                    interest: interests[inCategory]![i],
+                                    onSelected: (isSelected) {
+                                      _updateSelectedInterestCategories(
+                                          interests[inCategory]![i],
+                                          isSelected);
+                                    },
+                                  ),
+                              ]
+                            ],
+                          ),
+                          Gaps.v5,
+                          Wrap(
+                            spacing: 5,
+                            runSpacing: 7,
+                            clipBehavior: Clip.hardEdge,
+                            children: [
+                              for (int i = 0;
+                                  i < interests[inCategory]!.length;
+                                  i++) ...[
+                                if (i % 3 == 2)
+                                  InterestButton(
+                                    interest: interests[inCategory]![i],
+                                    onSelected: (isSelected) {
+                                      _updateSelectedInterestCategories(
+                                          interests[inCategory]![i],
+                                          isSelected);
+                                    },
+                                  ),
+                              ]
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ),
