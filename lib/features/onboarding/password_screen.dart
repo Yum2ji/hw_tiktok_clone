@@ -54,7 +54,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
           builder: (context) => const CategoryScreen(),
         ), (route) {
       //predicate, 여기는 previous route 쓸지 안쓸지를 정하는 부분임.
-      return true; //개발하는동안 true -> 추후 false로바꾸기
+      return false; //개발하는동안 true -> 추후 false로바꾸기
     });
   }
 
@@ -123,11 +123,12 @@ class _PasswordScreenState extends State<PasswordScreen> {
                         ),
                       ),
                       Gaps.h14,
-                      FaIcon(
-                        FontAwesomeIcons.solidCircleCheck,
-                        color: _isPasswordValid() ? Colors.green : Colors.grey,
-                        size: Sizes.size28,
-                      ),
+                      if (_isPasswordValid())
+                        const FaIcon(
+                          FontAwesomeIcons.solidCircleCheck,
+                          color: Colors.green,
+                          size: Sizes.size28,
+                        ),
                     ],
                   ),
                 ),

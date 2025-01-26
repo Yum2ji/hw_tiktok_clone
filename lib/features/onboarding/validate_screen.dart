@@ -14,14 +14,23 @@ class ValidateScreen extends StatefulWidget {
 }
 
 class _ValidateScreenState extends State<ValidateScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  List<bool> passValid = [false, false, false, false, false, false];
+
   void _onTapNext() {
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
           builder: (context) => const PasswordScreen(),
         ), (route) {
       //predicate, 여기는 previous route 쓸지 안쓸지를 정하는 부분임.
-      return true; //개발하는동안 true -> 추후 false로바꾸기
+      return false; //개발하는동안 true -> 추후 false로바꾸기
     });
+  }
+
+  bool _isFormValid() {
+    for (var val in passValid) if (!val) return false;
+
+    return true;
   }
 
   @override
@@ -70,52 +79,229 @@ class _ValidateScreenState extends State<ValidateScreen> {
                 textAlign: TextAlign.left,
               ),
               Gaps.v40,
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    '1',
-                    style: TextStyle(
-                      fontSize: Sizes.size44,
+                  Expanded(
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: Sizes.size32,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      cursorWidth: 0,
+                      decoration: InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade400,
+                            width: 2,
+                          ),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade900,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Insert num';
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        setState(() {
+                          passValid[0] = !passValid[0];
+                        });
+                      },
                     ),
                   ),
-                  Gaps.h24,
-                  Text(
-                    '2',
-                    style: TextStyle(
-                      fontSize: Sizes.size44,
+                  Gaps.h12,
+                  Expanded(
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: Sizes.size32,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      cursorWidth: 0,
+                      decoration: InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade400,
+                            width: 2,
+                          ),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade900,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Insert num';
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        setState(() {
+                          passValid[1] = !passValid[1];
+                        });
+                      },
                     ),
                   ),
-                  Gaps.h24,
-                  Text(
-                    '3',
-                    style: TextStyle(
-                      fontSize: Sizes.size44,
+                  Gaps.h12,
+                  Expanded(
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: Sizes.size32,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      cursorWidth: 0,
+                      decoration: InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade400,
+                            width: 2,
+                          ),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade900,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Insert num';
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        setState(() {
+                          passValid[2] = !passValid[2];
+                        });
+                      },
                     ),
                   ),
-                  Gaps.h24,
-                  Text(
-                    '4',
-                    style: TextStyle(
-                      fontSize: Sizes.size44,
+                  Gaps.h12,
+                  Expanded(
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: Sizes.size32,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      cursorWidth: 0,
+                      decoration: InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade400,
+                            width: 2,
+                          ),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade900,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Insert num';
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        setState(() {
+                          passValid[3] = !passValid[3];
+                        });
+                      },
                     ),
                   ),
-                  Gaps.h24,
-                  Text(
-                    '5',
-                    style: TextStyle(
-                      fontSize: Sizes.size44,
+                  Gaps.h12,
+                  Expanded(
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: Sizes.size32,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      cursorWidth: 0,
+                      decoration: InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade400,
+                            width: 2,
+                          ),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade900,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Insert num';
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        setState(() {
+                          passValid[4] = !passValid[4];
+                        });
+                      },
                     ),
                   ),
-                  Gaps.h24,
-                  Text(
-                    '6',
-                    style: TextStyle(
-                      fontSize: Sizes.size44,
+                  Gaps.h12,
+                  Expanded(
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: Sizes.size32,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      cursorWidth: 0,
+                      decoration: InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade400,
+                            width: 2,
+                          ),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade900,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      validator: (_) => null,
+                      onChanged: (value) {
+                        setState(() {
+                          passValid[5] = !passValid[5];
+                        });
+                      },
                     ),
                   ),
                 ],
               ),
+              Gaps.v28,
+              if (_isFormValid()) const Center(
+                  child: FaIcon(
+                    FontAwesomeIcons.solidCircleCheck,
+                    size: Sizes.size28,
+                    color: Colors.green,
+                  ),
+                ),
               Gaps.v40,
             ],
           ),
@@ -141,9 +327,9 @@ class _ValidateScreenState extends State<ValidateScreen> {
             ),
             Gaps.v10,
             GestureDetector(
-              onTap: _onTapNext,
-              child: const FormButton(
-                disabled: false,
+              onTap: _isFormValid() ? _onTapNext : null,
+              child: FormButton(
+                disabled: !_isFormValid(),
                 title: "Next",
               ),
             ),

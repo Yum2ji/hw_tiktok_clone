@@ -98,6 +98,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   ],
                 ),
               ),
+              Gaps.v14,
+              const Divider(),
               Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: Sizes.size14,
@@ -128,32 +130,38 @@ class _CategoryScreenState extends State<CategoryScreen> {
       bottomNavigationBar: BottomAppBar(
         height: 100,
         color: Colors.white,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
           children: [
-             const Row(
-               children: [
-                 Text(
-                  "Great Work🎉",
-                  style: TextStyle(
+            Divider(
+              thickness: 0.2,
+              color: Colors.grey.shade600,
+            ),
+            Gaps.v10,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  _selectedCategories.length >= 3
+                      ? "Great Work🎉"
+                      : "${_selectedCategories.length} of 3 selected",
+                  style: const TextStyle(
                     fontSize: Sizes.size16 + Sizes.size2,
                     fontWeight: FontWeight.normal,
                     color: Colors.black87,
                   ),
                   textAlign: TextAlign.left,
-                             ),
-               ],
-             ),
-
-            SizedBox(
-              width: 110,
-              child: GestureDetector(
-                onTap: _selectedCategories.length >= 3 ? _onNextTap : null,
-                child: FormButton(
-                  disabled: _selectedCategories.length < 3,
-                  title: "Next",
                 ),
-              ),
+                SizedBox(
+                  width: 110,
+                  child: GestureDetector(
+                    onTap: _selectedCategories.length >= 3 ? _onNextTap : null,
+                    child: FormButton(
+                      disabled: _selectedCategories.length < 3,
+                      title: "Next",
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
